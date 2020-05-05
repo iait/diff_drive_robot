@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+<!-- carga el robot en param robot_description -->
+<param name="robot_description" command="$(find xacro)/xacro 
+    $(find diff_drive_robot_description)/urdf/diff_drive_robot.xacro"/>
+
+<!-- publica el estado de todos los joints no fijos del robot -->
+<node name="joint_state_publisher" pkg="joint_state_publisher_gui" 
+    type="joint_state_publisher_gui"/>
+
+<!-- publica tf para visualizar en rviz -->
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+<!-- lanza rviz -->
+<node name="rviz" pkg="rviz" type="rviz" 
+    args="-d $(find diff_drive_robot_description)/rviz/config.rviz"/>
+
+</launch>

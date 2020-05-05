@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>diff_drive_robot_description</name>
+  <version>0.0.0</version>
+    <description>
+    <p>URDF Description package for the Differential Drive Robot</p>
+    <p>This package contains configuration data, 3D models and launch files for the Differential Drive Robot</p>
+  </description>
+
+  <license>BSD</license>
+  <maintainer email="ismaelaitd@gmail.com">Ismael Ait</maintainer>
+
+  <!-- Dependencies -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>urdf</depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+</package>

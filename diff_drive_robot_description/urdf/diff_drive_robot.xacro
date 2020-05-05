@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="diff_drive_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find diff_drive_robot_description)/urdf/material.xacro"/>
+<xacro:include filename="$(find diff_drive_robot_description)/urdf/macro.xacro"/>
+
+<!-- Dummy -->
+<link name="dummy_link"/>
+
+<!-- Chassis -->
+<link name="base_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="15"/>
+    <xacro:box_inertia mass="15" width="0.4" depth="0.2" height="0.1"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.4 0.2 0.1"/>
+    </geometry>
+    <material name="grey"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.4 0.2 0.1"/>
+    </geometry>
+  </collision>
+</link>
+<gazebo reference="base_link">
+  <visual>
+    <material>
+      <xacro:gmaterial color="grey"/>
+    </material>
+  </visual>
+</gazebo>
+<joint name="dummy_joint" type="fixed">
+  <parent link="dummy_link"/>
+  <child link="base_link"/>
+</joint>
+
+<!-- Front Caster -->
+<link name="front_caster_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.2"/>
+    <xacro:sphere_inertia mass="0.2" radius="0.05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <sphere radius="0.05"/>
+    </geometry>
+    <material name="grey"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <sphere radius="0.05"/>
+    </geometry>
+  </collision>
+</link>
+<gazebo reference="front_caster_link">
+  <kp value="1000000"/>
+  <kd value="1"/>
+  <mu1 value="0"/>
+  <mu2 value="0"/>
+  <visual>
+    <material>
+      <xacro:gmaterial color="grey"/>
+    </material>
+  </visual>
+</gazebo>
+<joint name="base_front_caster_joint" type="fixed">
+  <origin xyz="0.15 0 -0.05" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_caster_link"/>
+</joint>
+
+<!-- Rear Caster -->
+<link name="rear_caster_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.2"/>
+    <xacro:sphere_inertia mass="0.2" radius="0.05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <sphere radius="0.05"/>
+    </geometry>
+    <material name="grey"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <sphere radius="0.05"/>
+    </geometry>
+  </collision>
+</link>
+<gazebo reference="rear_caster_link">
+  <kp value="1000000"/>
+  <kd value="1"/>
+  <mu1 value="0"/>
+  <mu2 value="0"/>
+  <visual>
+    <material>
+      <xacro:gmaterial color="grey"/>
+    </material>
+  </visual>
+</gazebo>
+<joint name="base_rear_caster_joint" type="fixed">
+  <origin xyz="-0.15 0 -0.05" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_caster_link"/>
+</joint>
+
+<!-- Left Wheel -->
+<link name="left_wheel_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+    <mass value="5"/>
+    <xacro:cylinder_inertia mass="5" length="0.05" radius="0.1"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <cylinder length="0.05" radius="0.1"/>
+    </geometry>
+    <material name="blue"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <cylinder length="0.05" radius="0.1"/>
+    </geometry>
+  </collision>
+</link>
+<gazebo reference="left_wheel_link">
+  <visual>
+    <material>
+      <xacro:gmaterial color="blue"/>
+    </material>
+  </visual>
+</gazebo>
+<joint name="base_left_wheel_joint" type="continuous">
+  <origin xyz="0 -0.125 0" rpy="${pi/2} 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_link"/>
+  <axis xyz="0 0 1" rpy="0 0 0"/>
+  <limit effort="10000" velocity="1000"/>
+  <joint_properties damping="1.0" friction="1.0"/>
+</joint>
+
+<!-- Right Wheel -->
+<link name="right_wheel_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+    <mass value="5"/>
+    <xacro:cylinder_inertia mass="5" length="0.05" radius="0.1"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <cylinder length="0.05" radius="0.1"/>
+    </geometry>
+    <material name="blue"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <cylinder length="0.05" radius="0.1"/>
+    </geometry>
+  </collision>
+</link>
+<gazebo reference="right_wheel_link">
+  <visual>
+    <material>
+      <xacro:gmaterial color="blue"/>
+    </material>
+  </visual>
+</gazebo>
+<joint name="base_right_wheel_joint" type="continuous">
+  <origin xyz="0 0.125 0" rpy="${pi/2} 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_link"/>
+  <axis xyz="0 0 1" rpy="0 0 0"/>
+  <limit effort="10000" velocity="1000"/>
+  <joint_properties damping="1.0" friction="1.0"/>
+</joint>
+
+<!-- Laser -->
+<link name="laser_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy=" 0 0 0"/>
+    <mass value="0.27"/>
+    <xacro:box_inertia mass="0.27" width="0.05" depth="0.05" height="0.07"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy=" 0 0 0"/>
+    <geometry>
+      <mesh filename="package://diff_drive_robot_description/meshes/hokuyo.dae"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.05 0.05 0.07"/>
+    </geometry>
+  </collision>
+</link>
+<gazebo reference="laser_link">
+  <visual>
+    <material>
+      <xacro:gmaterial color="black"/>
+    </material>
+  </visual>
+</gazebo>
+<joint name="laser_link" type="fixed">
+  <origin xyz="-0.15 0 0.085" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="laser_link"/>
+</joint>
+<gazebo reference="laser_link">
+    <sensor type="ray" name="head_hokuyo_sensor">
+    <pose>0 0 0 0 0 0</pose>
+    <visualize>false</visualize>
+    <update_rate>40</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>720</samples>
+          <resolution>1</resolution>
+          <min_angle>-1.570796</min_angle>
+          <max_angle>1.570796</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.10</min>
+        <max>30.0</max>
+        <resolution>0.01</resolution>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+    <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+      <topicName>/diff_drive_robot/laser_scan</topicName>
+      <frameName>laser_link</frameName>
+    </plugin>
+  </sensor>
+</gazebo>
+
+</robot>
