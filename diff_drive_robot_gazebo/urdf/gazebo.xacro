@@ -17,7 +17,7 @@
     <commandTopic>diff_drive_robot/cmd_vel</commandTopic>
     <odometryTopic>diff_drive_robot/odom</odometryTopic>
     <odometryFrame>odom</odometryFrame>
-    <robotBaseFrame>base_link</robotBaseFrame>
+    <robotBaseFrame>robot_footprint</robotBaseFrame>
     <rosDebugLevel>0</rosDebugLevel>
     <publishWheelTF>false</publishWheelTF>
     <publishOdomTF>true</publishOdomTF>
