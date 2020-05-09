@@ -14,18 +14,22 @@
     <wheelSeparation>0.25</wheelSeparation>
     <wheelDiameter>0.2</wheelDiameter>
     <torque>10</torque>
+    <wheelAcceleration>0</wheelAcceleration>
+    <wheelTorque>5</wheelTorque>
+    <rosDebugLevel>0</rosDebugLevel>
+    <publishTf>true</publishTf>
+    
     <commandTopic>diff_drive_robot/cmd_vel</commandTopic>
+    
     <odometryTopic>diff_drive_robot/odom</odometryTopic>
     <odometryFrame>odom</odometryFrame>
     <robotBaseFrame>robot_footprint</robotBaseFrame>
-    <rosDebugLevel>0</rosDebugLevel>
-    <publishWheelTF>false</publishWheelTF>
     <publishOdomTF>true</publishOdomTF>
-    <publishWheelJointState>false</publishWheelJointState>
-    <wheelAcceleration>0</wheelAcceleration>
-    <wheelTorque>5</wheelTorque>
     <odometrySource>world</odometrySource>
-    <publishTf>1</publishTf>
+
+    <publishWheelJointState>true</publishWheelJointState>
+    <publishWheelTF>false</publishWheelTF>
+
   </plugin>
 </gazebo>
 
