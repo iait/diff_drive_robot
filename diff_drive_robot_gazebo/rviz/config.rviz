@@ -6,9 +6,6 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Path (Local)1
-        - /Path (Global)1
-        - /Pose1
       Splitter Ratio: 0.4612612724304199
     Tree Height: 728
   - Class: rviz/Selection
@@ -250,7 +247,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: odom
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -281,18 +278,18 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.9938814043998718
-        Y: 3.0397303104400635
-        Z: -0.25207021832466125
+        X: 0.5557866096496582
+        Y: 0.9757817387580872
+        Z: -0.2493743896484375
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5647963285446167
+      Pitch: 1.5697963237762451
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.005432491190731525
+      Yaw: 6.273617744445801
     Saved: ~
 Window Geometry:
   Displays:

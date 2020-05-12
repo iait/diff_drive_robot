@@ -25,13 +25,14 @@ laser_lambda_short: 0.1 # Exponential decay parameter for z_short part of model
 
 # Odometry model parameters
 odom_model_type: diff-corrected # Which model to use, either "diff", "omni", "diff-corrected" or "omni-corrected"
-odom_frame_id: odom # Which frame to use for odometry
-base_frame_id: robot_footprint # Which frame to use for the robot base
-global_frame_id: map # The name of the coordinate frame published by the localization system
 # Specifies the expected noise in odometry's rotation estimate from the rotational component of the robot's motion. -->
 odom_alpha1: 0.05 # expected noise in odometry's rotation estimate from the rotational component (default 0.2)
 odom_alpha2: 0.05 # expected noise in odometry's rotation estimate from the translational component (default 0.2)
 odom_alpha3: 0.05 # expected noise in odometry's translation estimate from the translational component (default 0.2)
 odom_alpha4: 0.05 # expected noise in odometry's translation estimate from the rotational component (default 0.2)
 odom_alpha5: 0.2 # Translation-related noise parameter (only used if model is "omni")
-  
+
+odom_frame_id: odom # Which frame to use for odometry
+base_frame_id: robot_footprint # Which frame to use for the robot base
+global_frame_id: map # The name of the coordinate frame published by the localization system
+tf_broadcast: true # Set this to false to prevent amcl from publishing the transform between the global frame and the odometry frame

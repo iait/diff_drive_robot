@@ -9,8 +9,8 @@
     
 <!-- Place odometry frame at map frame -->
 <!-- publica una transformación estática: xyz ypr parent_frame child_frame ms -->
-<node name="map_odom_broadcaster" pkg="tf" type="static_transform_publisher"
-    args="0 0 0 0 0 0 map odom 100"/>
+<!-- <node name="map_odom_broadcaster" pkg="tf" type="static_transform_publisher" -->
+<!--     args="0 0 0 0 0 0 map odom 100"/> -->
     
 <!-- Localization-->
 <node name="amcl" pkg="amcl" type="amcl" output="screen">
@@ -40,7 +40,7 @@
   <!-- base_local_planner/TrajectoryPlannerROS, eband_local_planner/EBandPlannerROS, teb_local_planner/TebLocalPlannerROS  -->
   <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
   
-  <param name="controller_frequency" value="50.0" />
+  <param name="controller_frequency" value="20.0" />
   <param name="planner_frequency" value="10.0" />
 
 </node>
