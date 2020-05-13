@@ -2,21 +2,25 @@
 <launch>
 
 <arg name="world" default="empty"/>
+<arg name="localization" default="amcl"/>
 
 <!-- Map server -->
 <node name="map_server" pkg="map_server" type="map_server" 
     args="$(find diff_drive_robot_gazebo)/maps/$(arg world).yaml"/>
     
-<!-- Place odometry frame at map frame -->
-<!-- publica una transformación estática: xyz ypr parent_frame child_frame ms -->
-<!-- <node name="map_odom_broadcaster" pkg="tf" type="static_transform_publisher" -->
-<!--     args="0 0 0 0 0 0 map odom 100"/> -->
-    
 <!-- Localization-->
-<node name="amcl" pkg="amcl" type="amcl" output="screen">
-  <remap from="scan" to="diff_drive_robot/laser_scan"/>
-  <rosparam file="$(find diff_drive_robot_gazebo)/config/amcl_params.yaml" command="load"/>
-</node>
+<group if="$(eval localization=='amcl')">
+  <node name="amcl" pkg="amcl" type="amcl" output="screen">
+    <remap from="scan" to="diff_drive_robot/laser_scan"/>
+    <rosparam file="$(find diff_drive_robot_gazebo)/config/amcl_params.yaml" command="load"/>
+  </node>
+</group>
+<group if="$(eval localization=='fake')">
+  <node name="fake" pkg="fake_localization" type="fake_localization" output="screen">
+    <remap from="base_pose_ground_truth" to="diff_drive_robot/odom"/>
+    <rosparam file="$(find diff_drive_robot_gazebo)/config/fake_params.yaml" command="load"/>
+  </node>
+</group>
 
 <!-- Move base -->
 <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
