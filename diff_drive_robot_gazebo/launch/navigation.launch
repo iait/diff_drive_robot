@@ -44,7 +44,7 @@
   <!-- base_local_planner/TrajectoryPlannerROS, eband_local_planner/EBandPlannerROS, teb_local_planner/TebLocalPlannerROS  -->
   <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
   
-  <param name="controller_frequency" value="20.0" />
+  <param name="controller_frequency" value="10.0" />
   <param name="planner_frequency" value="10.0" />
 
 </node>

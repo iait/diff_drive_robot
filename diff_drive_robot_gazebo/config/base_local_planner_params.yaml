@@ -50,17 +50,19 @@ EBandPlannerROS:
 
 TebLocalPlannerROS:
 
-  #odom_topic: odom
-  #map_frame: /odom
+  odom_topic: /diff_drive_robot/odom
+  map_frame: /map
 
-  teb_autosize: True
-  dt_ref: 0.3
-  dt_hysteresis: 0.03
-  global_plan_overwrite_orientation: True
-  max_global_plan_lookahead_dist: 1.0
-  feasibility_check_no_poses: 1
+  teb_autosize: true
+  dt_ref: 0.4
+  dt_hysteresis: 0.04
+  no_inner_iterations: 3
+  no_outer_iterations: 3
+  global_plan_overwrite_orientation: true
+  max_global_plan_lookahead_dist: 1.0 # default 3.0
+  feasibility_check_no_poses: 1 # default 4
 
-  wheelbase: 0.0
+  wheelbase: 0.0 # distancia entre el eje trasero y delantero
   acc_lim_x: 0.25
   acc_lim_y: 0.25
   acc_lim_theta: 0.25
@@ -73,17 +75,12 @@ TebLocalPlannerROS:
   # GoalTolerance
   xy_goal_tolerance: 0.2
   yaw_goal_tolerance: 0.1
-  free_goal_vel: False
+  free_goal_vel: false
 
   # Obstacles
   min_obstacle_dist: 0.4
-  include_costmap_obstacles: True
-  costmap_obstacles_behind_robot_dist: 1.0
-  obstacle_poses_affected: 10
-  costmap_converter_spin_thread: True
-  costmap_converter_rate: 5
-  min_obstacle_dist: 0.35
   inflation_dist: 0.45
-  dynamic_obstacle_inflation_dist: 0.6
-  obstacle_association_force_inclusion_factor: 2.0
-  obstacle_association_cutoff_factor: 4.0
+  include_costmap_obstacles: true
+  costmap_obstacles_behind_robot_dist: 1.0
+  obstacle_association_force_inclusion_factor: 2.0 # default 1.5
+  obstacle_association_cutoff_factor: 4.0 # default 5.0
